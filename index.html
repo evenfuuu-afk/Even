@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>婕樂纖 加盟價差表</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: phone-first product list grouped by series, sticky summary tray at bottom */
+:root{
+  --bg:#fbf6f8; --surface:#ffffff; --ink:#2a1a22; --muted:#7d6872; --line:#ecdde4;
+  --berry:#b3195f; --berry-soft:#fbe4ee; --gold:#a5741b; --gold-soft:#f7ecd6;
+  --save:#1f7a55; --save-soft:#e1f2ea;
+  --display:"Noto Serif TC","Songti TC",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1a1216; --surface:#251a20; --ink:#f6e9ef; --muted:#b39aa6; --line:#3a2a32;
+  --berry:#f06aa4; --berry-soft:#3d1a2a; --gold:#e3b462; --gold-soft:#3a2d16;
+  --save:#5fd3a0; --save-soft:#173227; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1a1216; --surface:#251a20; --ink:#f6e9ef; --muted:#b39aa6; --line:#3a2a32;
+  --berry:#f06aa4; --berry-soft:#3d1a2a; --gold:#e3b462; --gold-soft:#3a2d16;
+  --save:#5fd3a0; --save-soft:#173227; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 230px}
+.wrap{max-width:760px;margin:0 auto;display:grid;gap:22px}
+.num{font-variant-numeric:tabular-nums}
+header h1{font-family:var(--display);font-weight:800;font-size:1.7rem;margin:0;text-wrap:balance;letter-spacing:.02em}
+header p{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+.rule{background:var(--berry-soft);border-radius:14px;padding:14px 16px;display:grid;gap:8px}
+.rule b{color:var(--berry)}
+.rule .row{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.92rem}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{font:inherit;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--berry);border-color:var(--berry);color:#fff}
+h2{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:6px 0 0;display:flex;align-items:baseline;gap:10px}
+h2 small{font-family:var(--body);font-size:.8rem;color:var(--muted);font-weight:400}
+.list{display:grid;gap:10px}
+.item{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:10px;cursor:pointer;transition:border-color .15s}
+.item.on{border-color:var(--berry);box-shadow:0 0 0 3px var(--berry-soft)}
+.item:focus-visible{outline:2px solid var(--berry);outline-offset:2px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.name{font-weight:700;min-width:0}
+.spec{font-size:.8rem;color:var(--muted);font-weight:400;margin-left:4px}
+.check{flex:none;width:24px;height:24px;border-radius:7px;border:1.5px solid var(--line);display:grid;place-items:center;color:transparent;font-size:15px}
+.on .check{background:var(--berry);border-color:var(--berry);color:#fff}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.p{border-radius:10px;padding:6px 8px;background:var(--c-soft)}
+.p .l{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.p .v{font-weight:700;font-size:1.05rem;color:var(--c)}
+.p .s{font-size:.72rem;color:var(--save)}
+.p.r{--c:var(--ink);--c-soft:transparent;border:1px dashed var(--line)}
+.p.i{--c:var(--berry);--c-soft:var(--berry-soft)}
+.p.t{--c:var(--gold);--c-soft:var(--gold-soft)}
+.extra{font-size:.76rem;color:var(--muted)}
+.qty{display:none;align-items:center;gap:10px;justify-content:flex-end}
+.on .qty{display:flex}
+.qty button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:18px;cursor:pointer}
+.qty output{min-width:28px;text-align:center;font-weight:700}
+.tray{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);
+  box-shadow:0 -8px 24px rgba(0,0,0,.08);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-top:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.tray .in{max-width:760px;margin:0 auto;display:grid;gap:8px}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:.78rem;color:var(--muted)}
+.sum b{display:block;font-size:1.05rem;color:var(--ink)}
+.sum .i b{color:var(--berry)} .sum .t b{color:var(--gold)}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--berry);width:0;transition:width .25s}
+.goal{font-size:.82rem}
+.goal.ok{color:var(--save);font-weight:700}
+.acts{display:flex;gap:8px}
+.acts button{font:inherit;font-weight:700;border-radius:11px;padding:11px;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.acts .copy{flex:1;background:var(--berry);border-color:var(--berry);color:#fff}
+.toast{position:fixed;left:50%;bottom:calc(200px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:.88rem;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+textarea{width:100%;box-sizing:border-box;min-height:120px;font:inherit;font-size:.85rem;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>婕樂纖 加盟價差表</h1>
+    <p>點選產品、調整數量，下方即時算出價差，一鍵複製給客人。</p>
+  </header>
+
+  <section class="rule">
+    <div><b>湊滿 $6,800 就能用成本價買</b>：首次備貨 $6,600（以實習價計）＋ 創業包 $200</div>
+    <div class="row"><span>實習零售加盟商：新加盟 <b class="num">$6,800</b></span><span>三級零售加盟商：新加盟 <b class="num">$19,800</b></span></div>
+    <div class="legend"><span style="--c:var(--ink)">零售價</span><span style="--c:var(--berry)">實習價</span><span style="--c:var(--gold)">三級價</span></div>
+  </section>
+
+  <nav class="tabs" aria-label="系列">
+    <button id="tab-all" aria-pressed="true" data-f="all">全部</button>
+    <button id="tab-slim" aria-pressed="false" data-f="slim">纖體・保健</button>
+    <button id="tab-skin" aria-pressed="false" data-f="skin">美肌</button>
+  </nav>
+
+  <div id="groups"></div>
+</div>
+
+<div class="tray">
+  <div class="in">
+    <div class="sum num">
+      <div>零售合計<b id="sR">$0</b></div>
+      <div class="i">實習價合計<b id="sI">$0</b><span id="dI"></span></div>
+      <div class="t">三級價合計<b id="sT">$0</b><span id="dT"></span></div>
+    </div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="goal num" id="goal">尚未選擇產品</div>
+    <div class="acts">
+      <button class="clear" id="clear">清除</button>
+      <button class="copy" id="copy">複製文字給客人</button>
+    </div>
+    <textarea id="fallback" hidden readonly></textarea>
+  </div>
+</div>
+<div class="toast" id="toast">已複製</div>
+
+<script>
+// [name, spec, 三級, 實習, VIP(滿$4,000), 兩盒優惠, 零售]  null = 無此優惠
+const DATA = {
+  slim:{title:"纖體・保健系列", items:[
+    ["纖纖飲X","14入/盒",990,1160,1280,1380,1480],
+    ["纖甄錠","60錠/盒",990,1160,1280,1380,1480],
+    ["雪花紫纖飲","14包/盒",660,780,830,900,990],
+    ["爆纖錠","120錠/盒",580,660,740,800,880],
+    ["爆纖錠 體驗包","30錠/包",164,190,null,null,240],
+    ["植萃纖酵宿","60錠/盒",660,780,830,900,990],
+    ["植萃纖酵宿 體驗包","10錠/包",117,145,null,null,190],
+    ["肽纖飲（可可／奶茶風味）","10入/盒",660,780,830,900,990],
+    ["金盞花葉黃素 EX 飲","12入/盒",720,840,900,990,1080],
+    ["金盞花葉黃素 高鈣晶亮凍","10入/盒",455,530,600,630,680],
+    ["高機能益生菌","30入/盒",860,990,1100,1180,1280],
+    ["TURBO 極速錠","20錠/盒",455,530,600,630,680],
+    ["纖酵草本茶","20入/盒",660,780,830,900,990],
+    ["固樂纖","60錠/盒",1080,1260,1480,1580,1680]
+  ]},
+  skin:{title:"美肌系列", items:[
+    ["水光錠","60錠/盒",1080,1260,1480,1580,1680],
+    ["水光補零面膜 禮盒","5入/盒",500,550,600,650,700],
+    ["雪肌露","120ml/瓶",860,990,1100,1180,1280],
+    ["緹肌零","200ml/瓶",660,780,830,900,990],
+    ["緹肌零 體驗包","7ml/包",25,30,null,null,40],
+    ["精純玻尿酸保濕原液","20ml/瓶",660,780,830,900,990],
+    ["急救小白瓶","100ml/瓶",860,990,1100,1180,1280],
+    ["積雪草護手霜","50ml/支",455,530,600,630,680],
+    ["法樂護 洗髮露","500ml/瓶",860,990,1100,1180,1280],
+    ["法樂護 洗髮露 體驗包","8ml/包",21,24,null,null,30],
+    ["法樂護 養髮液","30ml/瓶",720,840,900,990,1080]
+  ]}
+};
+const STARTER=200, INTERN_GOAL=6800, TIER3_GOAL=19800;
+const qty={}; // id -> count
+const $=s=>document.querySelector(s);
+const fmt=n=>"$"+n.toLocaleString("en-US");
+const pct=(a,b)=>Math.round((1-a/b)*100);
+
+function render(){
+  const g=$("#groups"); g.innerHTML="";
+  for(const [key,grp] of Object.entries(DATA)){
+    const sec=document.createElement("section"); sec.dataset.g=key; sec.style.display="grid"; sec.style.gap="10px";
+    sec.innerHTML=`<h2>${grp.title}<small>${grp.items.length} 項</small></h2>`;
+    const list=document.createElement("div"); list.className="list";
+    grp.items.forEach((it,i)=>{
+      const id=key+i, [n,sp,t3,int,vip,two,r]=it;
+      const el=document.createElement("div"); el.className="item"; el.tabIndex=0; el.dataset.id=id;
+      el.setAttribute("role","checkbox"); el.setAttribute("aria-checked","false");
+      el.innerHTML=`
+        <div class="top"><div class="name">${n}<span class="spec">${sp}</span></div><div class="check">✓</div></div>
+        <div class="prices num">
+          <div class="p r"><div class="l">零售價</div><div class="v">${fmt(r)}</div></div>
+          <div class="p i"><div class="l">實習價</div><div class="v">${fmt(int)}</div><div class="s">省 ${fmt(r-int)}（${pct(int,r)}%）</div></div>
+          <div class="p t"><div class="l">三級價</div><div class="v">${fmt(t3)}</div><div class="s">省 ${fmt(r-t3)}（${pct(t3,r)}%）</div></div>
+        </div>
+        ${vip?`<div class="extra num">消費者優惠：滿 $4,000 VIP 價 ${fmt(vip)}／兩盒優惠價 ${fmt(two)}</div>`:`<div class="extra">體驗包不適用 VIP／兩盒優惠</div>`}
+        <div class="qty"><button type="button" data-d="-1" aria-label="減少">−</button><output class="num">1</output><button type="button" data-d="1" aria-label="增加">＋</button></div>`;
+      el.addEventListener("click",e=>{
+        const b=e.target.closest("button");
+        if(b){ qty[id]=Math.max(0,(qty[id]||0)+ +b.dataset.d); if(!qty[id]) delete qty[id]; }
+        else { if(qty[id]) delete qty[id]; else qty[id]=1; }
+        update();
+      });
+      el.addEventListener("keydown",e=>{ if((e.key===" "||e.key==="Enter")&&e.target===el){e.preventDefault(); el.click();} });
+      list.appendChild(el);
+    });
+    sec.appendChild(list); g.appendChild(sec);
+  }
+}
+function picked(){
+  return Object.entries(qty).map(([id,q])=>{const k=id.match(/^[a-z]+/)[0], i=+id.slice(k.length); return {it:DATA[k].items[i],q,id};});
+}
+function totals(p){
+  let r=0,i=0,t=0; p.forEach(({it,q})=>{t+=it[2]*q;i+=it[3]*q;r+=it[6]*q;}); return {r,i,t};
+}
+function update(){
+  document.querySelectorAll(".item").forEach(el=>{
+    const q=qty[el.dataset.id]; el.classList.toggle("on",!!q); el.setAttribute("aria-checked",q?"true":"false");
+    el.querySelector("output").textContent=q||1;
+  });
+  const p=picked(), {r,i,t}=totals(p);
+  $("#sR").textContent=fmt(r); $("#sI").textContent=fmt(i); $("#sT").textContent=fmt(t);
+  $("#dI").textContent=r?`省 ${fmt(r-i)}`:""; $("#dT").textContent=r?`省 ${fmt(r-t)}`:"";
+  const withKit=i+STARTER, goal=$("#goal");
+  $("#bar").style.width=Math.min(100,withKit/INTERN_GOAL*100)+"%";
+  if(!p.length){goal.textContent="尚未選擇產品"; goal.className="goal num";}
+  else if(withKit>=INTERN_GOAL){goal.textContent=`實習價 ${fmt(i)} ＋ 創業包 $200 ＝ ${fmt(withKit)}，已達 $6,800 門檻 ✓`; goal.className="goal num ok";}
+  else {goal.textContent=`實習價 ${fmt(i)} ＋ 創業包 $200 ＝ ${fmt(withKit)}，還差 ${fmt(INTERN_GOAL-withKit)} 達 $6,800`; goal.className="goal num";}
+}
+function buildText(){
+  const p=picked(); if(!p.length) return "";
+  const {r,i,t}=totals(p), lines=["【婕樂纖 價格試算】",""];
+  p.forEach(({it,q})=>{
+    lines.push(`▪ ${it[0]}（${it[1]}）× ${q}`);
+    lines.push(`　零售 ${fmt(it[6]*q)}｜實習 ${fmt(it[3]*q)}｜三級 ${fmt(it[2]*q)}`);
+  });
+  lines.push("","—— 合計 ——");
+  lines.push(`零售價：${fmt(r)}`);
+  lines.push(`實習價：${fmt(i)}（省 ${fmt(r-i)}）`);
+  lines.push(`三級價：${fmt(t)}（省 ${fmt(r-t)}）`);
+  lines.push("");
+  const withKit=i+STARTER;
+  lines.push(`💡 實習價 ${fmt(i)} ＋ 創業包 $200 ＝ ${fmt(withKit)}`);
+  lines.push(withKit>=INTERN_GOAL?`已達 $6,800，可直接用成本價購買！`:`再湊 ${fmt(INTERN_GOAL-withKit)} 就達 $6,800，可用成本價購買！`);
+  return lines.join("\n");
+}
+let tt;
+function toast(msg){const el=$("#toast"); el.textContent=msg; el.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove("show"),1600);}
+$("#copy").addEventListener("click",()=>{
+  const txt=buildText(); if(!txt){toast("請先點選產品");return;}
+  const fb=$("#fallback");
+  const fallback=()=>{fb.value=txt; fb.hidden=false; fb.focus(); fb.select(); toast("請長按文字框手動複製");};
+  try{ navigator.clipboard.writeText(txt).then(()=>{fb.hidden=true; toast("已複製，可以貼給客人了");},fallback); }catch(e){fallback();}
+});
+$("#clear").addEventListener("click",()=>{for(const k in qty) delete qty[k]; $("#fallback").hidden=true; update();});
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+  document.querySelectorAll("#groups section").forEach(s=>s.style.display=(b.dataset.f==="all"||b.dataset.f===s.dataset.g)?"grid":"none");
+}));
+render();
+update();
+</script>
+</body>
+</html>
